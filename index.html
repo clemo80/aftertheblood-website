@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>After the Blood — a film by Pia Mechler</title>
+<meta name="description" content="After the Blood, a dark, twisted comedy that becomes a horror film about making a horror film. In development, written and directed by Pia Mechler.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream: #f3ead9;
+    --blue: #b7c3c5;
+    --ink: #1c1815;
+    --ink-dim: rgba(28,24,21,0.68);
+    --ink-faint: rgba(28,24,21,0.42);
+    --accent: #5f7a86;
+    --wrap: 700px;
+    --edge: clamp(24px, 6vw, 64px);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ background: var(--cream); scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Archivo', Arial, sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection{ background: var(--ink); color: var(--cream); }
+
+  a{ color: inherit; }
+
+  .display{
+    font-family: 'Anton', Arial, sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .eyebrow{
+    font-family: 'Anton', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 0 0 20px;
+  }
+
+  section{
+    padding: 90px var(--edge);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .content{
+    max-width: var(--wrap);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero{
+    position: relative;
+    width: 100%;
+    line-height: 0;
+  }
+
+  .hero img{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .hero-scrim{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 46%;
+    background: linear-gradient(to bottom, rgba(10,10,8,0.55), rgba(10,10,8,0) 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-text{
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    padding: 0 5%;
+    z-index: 1;
+  }
+
+  .hero-eyebrow{
+    position: relative;
+    z-index: 1;
+    font-family: 'Anton', Arial, sans-serif;
+    font-size: clamp(10px, 1.6vw, 13px);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+    margin: 0 0 clamp(6px, 1.4vw, 14px);
+  }
+
+  .hero h1{
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: #ffffff;
+    line-height: 0.95;
+    font-size: clamp(26px, 6.6vw, 96px);
+    letter-spacing: 0.005em;
+    text-shadow: 0 2px 28px rgba(0,0,0,0.25);
+  }
+
+  .hero-byline{
+    position: relative;
+    z-index: 1;
+    margin: clamp(8px, 1.6vw, 18px) 0 0;
+    font-style: italic;
+    color: rgba(255,255,255,0.82);
+    font-size: clamp(11px, 1.8vw, 16px);
+  }
+
+  /* ---------- REVEAL ---------- */
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in{
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- COPY SECTION ---------- */
+
+  .lede{
+    font-size: clamp(20px, 2.6vw, 25px);
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 28px;
+  }
+
+  .lede a{
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: color .3s ease;
+  }
+  .lede a:hover{ color: var(--accent); }
+
+  .tagline{
+    font-weight: 400;
+    font-size: clamp(20px, 2.6vw, 25px);
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  /* ---------- GORILLA ---------- */
+
+  .gorilla-wrap{
+    position: relative;
+    width: 100%;
+    line-height: 0;
+  }
+
+  .gorilla-wrap img{
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .gorilla-copy{
+    position: absolute;
+    top: 50%;
+    left: 6%;
+    width: 42%;
+    transform: translateY(-50%);
+    line-height: 1.5;
+    font-size: clamp(15px, 2.5vw, 27px);
+    font-weight: 600;
+    color: var(--ink);
+    text-shadow:
+      0 1px 0 rgba(255,255,255,0.55),
+      0 0 22px rgba(243,234,217,0.9),
+      0 0 8px rgba(243,234,217,0.9);
+  }
+
+  @media (max-width: 760px){
+    .gorilla-wrap{
+      display: flex;
+      flex-direction: column;
+    }
+    .gorilla-copy{
+      position: static;
+      transform: none;
+      width: auto;
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 40px var(--edge) 0;
+      font-size: 17px;
+      font-weight: 500;
+      text-align: center;
+      text-shadow: none;
+      background: var(--cream);
+    }
+  }
+
+  /* ---------- FOOTER ---------- */
+
+  footer{
+    background: var(--ink);
+    color: var(--cream);
+    padding: 40px var(--edge) 46px;
+    text-align: center;
+  }
+  footer p{
+    margin: 0 0 12px;
+    font-family: 'Anton', Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .footer-status{
+    display:inline-block;
+    font-family: 'Anton', Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    border: 2px solid rgba(243,234,217,0.4);
+    padding: 9px 16px;
+    border-radius: 999px;
+    margin-top: 8px;
+  }
+  .footer-back{
+    display:block;
+    margin-top: 22px;
+    font-family: 'Archivo', Arial, sans-serif;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: normal;
+    color: rgba(243,234,217,0.72);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(243,234,217,0.35);
+    transition: color .3s ease, border-color .3s ease;
+  }
+  .footer-back:hover{ color: var(--cream); border-color: var(--cream); }
+
+  @media (max-width: 640px){
+    section{ padding: 64px var(--edge); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <img src="images/dolls-hero.jpg" alt="Three vintage porcelain dolls with unsettling glass eyes stand on a mantel in front of floral wallpaper.">
+    <div class="hero-scrim"></div>
+    <div class="hero-text">
+      <p class="hero-eyebrow">Coming soon</p>
+      <h1 class="display">After the Blood</h1>
+      <p class="hero-byline">a film by Pia Mechler</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="content reveal">
+      <p class="lede">Based on her award-nominated short film <a href="https://blackhole-film.com/" target="_blank" rel="noopener">Black Hole</a>, Pia Mechler is developing After the Blood.</p>
+      <p class="tagline">A dark, twisted comedy that becomes a horror film about making a horror film.</p>
+    </div>
+  </section>
+
+  <div class="gorilla-wrap reveal">
+    <img src="images/gorilla-boom-operator.png" alt="A gorilla holds a boom microphone on a film set, standing in front of floral wallpaper.">
+    <p class="gorilla-copy">When an out-of-work, aging TV actress lands the role of her lifetime on a low budget horror film, she begins to question her sanity — and everyone else's — as production spins dangerously out of control.</p>
+  </div>
+
+  <footer>
+    <p>After the Blood · a film by Pia Mechler</p>
+    <span class="footer-status">Currently in development</span>
+    <a class="footer-back" href="https://blackhole-film.com/">← Black Hole</a>
+  </footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
